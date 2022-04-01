@@ -84,6 +84,7 @@ function Field(){
         hills[h].Appears();
     }
 }
+
 function CreateHill(color){
     for(let h = 0; h < totalHills; h ++){
         xStartPos = random(-40,width);
