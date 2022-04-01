@@ -133,7 +133,7 @@ function ThroughImage(wd, ht){
     }
 }
 
-function mouseWheel() {
+function mousePressed() {
     CreateInsects(mouseX, mouseY,insectSize,insectSpeed);
 }
 
