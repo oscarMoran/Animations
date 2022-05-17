@@ -21,6 +21,9 @@ let planes = [];
 let totalPlanes = 3;
 let planeSpeed;
 
+let highWayLines =[
+];
+let highWayYvalue;
 
 function preload(){
     rick = loadImage("rick.jpg");
@@ -31,10 +34,13 @@ function setup(){
     insectSpeed = random(4,8);
     MoonXPos = width / 2;
     MoonYPos = height / 2;
+    highWayYvalue = height * 0.65;
     CreateHill(color(0));
     CreateStars();
     CreateMeteorits(totalMeteorits);
     CreatePlanes(totalPlanes);
+    
+    InitHighwayLines(highWayYvalue);
 }
 
 function draw(){
@@ -60,8 +66,30 @@ function draw(){
             insects.splice(i,1);
         }
     }
+    HighWay();
 }
 
+function InitHighwayLines(initYValue){
+    let add = 20;
+    let base = width / 2;
+    let firstDotLineValue = 0;
+    let secondDotLineValue = 0;
+    for(let n = 0; n < 5; n++){
+        firstDotLineValue = n === 0 ? initYValue : firstDotLineValue + 60;
+        secondDotLineValue = n === 0 ? initYValue + add : firstDotLineValue + add;
+        highWayLines.push({ x1 : base, y1 : firstDotLineValue, x2: base, y2 : secondDotLineValue });
+    }
+}
+
+function HighWay(){
+    stroke(67,65,65);
+    line(width /2 -15, highWayYvalue, width *0.25, height);
+    line(width /2 + 15, highWayYvalue, width * 0.75, height);
+    for(let ln = 0;  ln < highWayLines.length; ln++){
+        let currentHwObj = highWayLines[ln];
+        line(currentHwObj.x1, currentHwObj.y1, currentHwObj.x2, currentHwObj.y2);
+    }
+}
 
 function CreatePlanes(totalPlanes){
     for(let p = 0; p < totalPlanes; p++){
@@ -84,10 +112,11 @@ function Field(){
         hills[h].Appears();
     }
 }
+
 function CreateHill(color){
     for(let h = 0; h < totalHills; h ++){
         xStartPos = random(-40,width);
-        yStartPos = random(height/2, height*0.75);
+        yStartPos = random(height/2, height*0.65);
         hills.push(new Hill(xStartPos,yStartPos,color));
     }
 }
@@ -133,7 +162,7 @@ function ThroughImage(wd, ht){
     }
 }
 
-function mousePressed() {
+function mouseWheel() {
     CreateInsects(mouseX, mouseY,insectSize,insectSpeed);
 }
 
