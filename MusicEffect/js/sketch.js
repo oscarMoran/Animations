@@ -2,6 +2,9 @@ var song;
 var slider;
 var button;
 var amp;
+let trail;
+let effectValue = 1;
+let trails = [];
 
 
 function setup(){
@@ -29,18 +32,37 @@ function TogglePlaying()
 }
 
 function draw(){
-    let baseX = width /2; let baaseY = height /2;
+    var baseX = width /2; let baseY = height /2;
     background(0);
     var vol = amp.getLevel();
-    var diam = map(vol,0,0.3,10,150);
-    let co = color(56,random(diam),random(diam))
-    fill(co);
-    noStroke();
-    ellipse(baseX, baaseY , diam, diam);
-    
-    stroke(255);
-    line(baseX, baaseY,(baseX) - diam, baaseY);
-    line(baseX, baaseY, (baseX) + diam, baaseY);
-
+    var diam = map(vol,0,0.3,35,140);
+    let randomColor = color(56,random(diam),random(diam))
     song.setVolume(slider.value());
+
+    Saturn(baseX,baseY,diam);
+    if(diam > 120){
+        trails.push(new Chemtrail(width /2, height / 2));
+    }
+    trails.forEach(t => {
+        t.Update(diam);
+        t.Show(diam,effectValue, randomColor);
+        if(t.IsDeleteit()){
+            trails.splice(t,1);
+        }
+    });
+    
+}
+
+function Saturn(baseX, baseY, diam){
+    noFill();
+    stroke(255);
+    ellipse(baseX, baseY , diam, diam);
+    line((baseX - diam), baseY, (baseX + diam), baseY);
+}
+function mousePressed  (){
+    trails.push(new Chemtrail(width /2, height / 2));
+}
+
+function mouseWheel(){
+    effectValue = effectValue > 0 ? effectValue -1 : effectValue +1;
 }
