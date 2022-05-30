@@ -35,10 +35,11 @@ function setup() {
   
   function InitializeObjs() {
     //Stars
+    let starColors = color(random(200),145,random(255));
     for(let s = 0; s < starsNumber; s++){
       randomStarPositionX = random(width); 
       randomStarPositionY = random(0, height /2 * .75); 
-      stars.push(new Stars(randomStarPositionX, randomStarPositionY, random(0,2)))
+      stars.push(new Stars(randomStarPositionX, randomStarPositionY, random(0,2), starColors))
     }
     //Trees
     for(let e = 0; e < treesNumber; e++){
@@ -47,7 +48,7 @@ function setup() {
   }
 function draw() {
     background(0);
-    ColorBalloms();
+    NightLandscape();
   }
 
   function NightLandscape(){

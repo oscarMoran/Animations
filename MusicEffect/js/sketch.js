@@ -5,6 +5,8 @@ var amp;
 let trail;
 let effectValue = 1;
 let trails = [];
+let stars = [];
+let starsNumber = 450;
 
 
 function setup(){
@@ -12,6 +14,7 @@ function setup(){
     amp = new p5.Amplitude();
     slider = createSlider(0,1,0.5,0.01);
     song = loadSound('Ripple.mp3', Loaded );
+    StarsLoad();
 }
 
 function Loaded()
@@ -39,6 +42,9 @@ function draw(){
     let randomColor = color(56,random(diam),random(diam))
     song.setVolume(slider.value());
 
+    stars.forEach(t => {
+        t.Apear();
+    });
     Saturn(baseX,baseY,diam);
     if(diam > 120){
         trails.push(new Chemtrail(width /2, height / 2));
@@ -50,14 +56,22 @@ function draw(){
             trails.splice(t,1);
         }
     });
-    
 }
 
 function Saturn(baseX, baseY, diam){
-    noFill();
+    fill(0);
     stroke(255);
     ellipse(baseX, baseY , diam, diam);
     line((baseX - diam), baseY, (baseX + diam), baseY);
+}
+
+function StarsLoad(){
+    let starColors = color(255,0,0);
+    for(let s = 0; s < starsNumber; s++){
+        let randomStarPositionX = random(width); 
+        let randomStarPositionY = random(height); 
+        stars.push(new Stars(randomStarPositionX, randomStarPositionY, random(0,1), starColors));
+    }
 }
 function mousePressed  (){
     trails.push(new Chemtrail(width /2, height / 2));

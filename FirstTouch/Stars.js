@@ -1,12 +1,13 @@
 class Stars {
-    constructor(XPosition, YPosition, starSize){
+    constructor(XPosition, YPosition, starSize, starColor){
         this.starXPosition = XPosition;
         this.starYPosition = YPosition;
         this.starSize = starSize;
+        this.colorStar = starColor;
     }
 
     Apear(){
-        fill(random(200),145,random(255));
+        fill(this.colorStar);
         circle(this.starXPosition,this.starYPosition, this.starSize * 2);
     }
     Shine(){
