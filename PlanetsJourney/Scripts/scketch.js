@@ -17,7 +17,7 @@ var amp;
 
 
 function preload(){
-    music = loadSound('../MusicEffect/Paralelo.mp3',playMusic);
+    music = loadSound('../MusicEffect/Paralelo.mp3',mousePressed);
 }
 function playMusic(){
     music.play();
@@ -34,6 +34,14 @@ function setup(){
     AssignPlanetFeatures();
     InitializeStars();
     InitializeTrash(true);
+}
+
+function mousePressed(){
+    if(!music.isPlaying()){
+        music.play();
+    }else{
+        music.pause();
+    }
 }
 
 function draw(){
