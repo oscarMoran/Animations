@@ -17,11 +17,9 @@ var amp;
 
 
 function preload(){
-    music = loadSound('../MusicEffect/Paralelo.mp3',mousePressed);
+    music = loadSound('../MusicEffect/Paralelo.mp3');
 }
-function playMusic(){
-    music.play();
-}
+
 function setup(){
     amp = new p5.Amplitude();
     createCanvas(1000, 750);
@@ -39,8 +37,6 @@ function setup(){
 function mousePressed(){
     if(!music.isPlaying()){
         music.play();
-    }else{
-        music.pause();
     }
 }
 
