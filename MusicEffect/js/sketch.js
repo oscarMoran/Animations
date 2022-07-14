@@ -39,7 +39,8 @@ function draw(){
     background(0);
     var vol = amp.getLevel();
     var diam = map(vol,0,0.3,35,140);
-    let randomColor = color(56,random(diam),random(diam))
+    let randomColor = color(56,random(diam),random(diam));
+    let currentXvalue = 0;
     song.setVolume(slider.value());
 
     stars.forEach(t => {
@@ -49,13 +50,23 @@ function draw(){
     if(diam > 120){
         trails.push(new Chemtrail(width /2, height / 2));
     }
-    trails.forEach(t => {
+    let c =50;
+    beginShape();
+    trails.forEach((t, v) => {
         t.Update(diam);
         t.Show(diam,effectValue, randomColor);
         if(t.IsDeleteit()){
             trails.splice(t,1);
         }
+        // currentXvalue = t.x;
+        // var tones = map(currentXvalue,0,1,height,0);
+        // vertex(c,tones);
+        // c+= 1;
+        // console.log(tones,currentXvalue);
     });
+    endShape();
+    console.log(trails);
+
 }
 
 function Saturn(baseX, baseY, diam){

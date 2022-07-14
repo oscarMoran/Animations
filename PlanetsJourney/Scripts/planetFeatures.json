@@ -1,0 +1,55 @@
+[{
+    "name" : "Mercury",
+    "size" : 8,
+    "positionX":0,
+    "positionY":0,
+    "colors":{}
+},{
+    "name" : "Venus",
+    "size" :20,
+    "positionX":30,
+    "positionY":0,
+    "colors":{}
+},{
+    "name" : "Earth",
+    "size" :22,
+    "positionX":60,
+    "positionY":0,
+    "colors":{}
+},{
+    "name" : "Mars",
+    "size" :18,
+    "positionX":90,
+    "positionY":0,
+    "colors":{}
+},{
+    "name" : "Jupiter",
+    "size" :40,
+    "positionX":120,
+    "positionY":0,
+    "colors":{}
+},{
+    "name" : "Saturn",
+    "size" :35,
+    "positionX":150,
+    "positionY":0,
+    "colors":{}
+},{
+    "name" : "Uranus",
+    "size" :31,
+    "positionX":180,
+    "positionY":0,
+    "colors":{}
+},{
+    "name" : "Neptune",
+    "size" :30,
+    "positionX":210,
+    "positionY":0,
+    "colors":{}
+},{
+    "name" : "Pluto",
+    "size" :6,
+    "positionX":240,
+    "positionY":0,
+    "colors":{}
+}]
